@@ -21,7 +21,7 @@
   "fields": {
     "question": 1,
     "choice_text": "5 AM",
-    "votes": 0
+    "votes": 1
   }
 },
 {
@@ -66,7 +66,7 @@
   "fields": {
     "question": 2,
     "choice_text": "Hell yeah I'm reading those manga and manhwa",
-    "votes": 0
+    "votes": 2
   }
 },
 {
@@ -93,6 +93,15 @@
   "fields": {
     "question": 2,
     "choice_text": "I read but not a lot",
+    "votes": 0
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 12,
+  "fields": {
+    "question": 2,
+    "choice_text": "I read novels",
     "votes": 0
   }
 }
