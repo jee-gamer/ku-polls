@@ -159,3 +159,20 @@ class IsPublishedTest(TestCase):
                                            days=-5)
         status = past_question.is_published()
         self.assertTrue(status)
+
+
+class CanVoteTest(TestCase):
+    def test_cannot_vote_after_end_date(self):
+        """
+        Cannot vote if the end date is in the past
+        """
+
+    def test_cannot_vote_before_pub_date(self):
+        """
+        Cannot vote if the pub date is in the future
+        """
+
+    def test_can_vote_after_publish(self):
+        """
+        Can vote if the time now is between pub date and end date
+        """
