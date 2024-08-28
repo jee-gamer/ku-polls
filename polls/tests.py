@@ -114,7 +114,7 @@ class DetailViewTest(TestCase):
         The detail view of a question with a pub_date in the future
         returns a 404 not found.
         """
-        future_question = create_question(question_text="Past Question.",
+        future_question = create_question(question_text="Future Question.",
                                           days=5)
         url = reverse("polls:detail", args=(future_question.id,))
         response = self.client.get(url)
@@ -130,3 +130,32 @@ class DetailViewTest(TestCase):
         url = reverse("polls:detail", args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
+
+
+class IsPublishedTest(TestCase):
+    def test_future_pub_date(self):
+        """
+        If the publish date is in the future there should be no question found
+        in UI.
+        """
+        future_question = create_question(question_text="Future", days=5)
+        status = future_question.is_published()
+        self.assertFalse(status)
+
+    def test_default_pub_date(self):
+        """
+        If the publish date is default (now) we should be able to see question.
+        """
+        default_question = create_question(question_text="default_question",
+                                           days=0)
+        status = default_question.is_published()
+        self.assertTrue(status)
+
+    def test_past_pub_date(self):
+        """
+        If the publish date is in the past we should be able to see question.
+        """
+        past_question = create_question(question_text="past_question",
+                                           days=-5)
+        status = past_question.is_published()
+        self.assertTrue(status)
