@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.utils import timezone
 from django.urls import reverse
 
-from .models import Question
+from .models import Question, Choice
 
 
 class QuestionModelTests(TestCase):
@@ -161,18 +161,76 @@ class IsPublishedTest(TestCase):
         self.assertTrue(status)
 
 
+def create_question_with_choices_and_time(question_text, choice_texts, pub_day, end_day):
+    """
+    Create a question with the given `question_text`, published the
+    given number of `days` offset to now, and a list of `choice_texts`.
+    """
+    pub_time = timezone.now() + datetime.timedelta(days=pub_day)
+    end_time = timezone.now() + datetime.timedelta(days=end_day)
+    question = Question.objects.create(question_text=question_text,
+                                       pub_date=pub_time,
+                                       end_date=end_time)
+    for choice_text in choice_texts:
+        Choice.objects.create(question=question, choice_text=choice_text,
+                              votes=0)
+    return question
+
+
 class CanVoteTest(TestCase):
     def test_cannot_vote_after_end_date(self):
         """
         Cannot vote if the end date is in the past
         """
+        sample_question = create_question_with_choices_and_time(
+            question_text="sample_question",
+            choice_texts=["c1", "c2"],
+            pub_day=-2,
+            end_day=-1
+        )
+        url = reverse("polls:detail", args=(sample_question.id,))
+        response = self.client.get(url)
+
+        choice = sample_question.choice_set.first()
+        vote_url = reverse("polls:vote", args=(sample_question.id,))
+        response = self.client.post(vote_url, {'choice': choice.id})
+        # You should not be able to vote.. what response? idk yet
 
     def test_cannot_vote_before_pub_date(self):
         """
         Cannot vote if the pub date is in the future
         """
+        sample_question = create_question_with_choices_and_time(
+            question_text="sample_question",
+            choice_texts=["c1", "c2"],
+            pub_day=1,
+            end_day=2
+        )
+        url = reverse("polls:detail", args=(sample_question.id,))
+        response = self.client.get(url)
+
+        choice = sample_question.choice_set.first()
+        vote_url = reverse("polls:vote", args=(sample_question.id,))
+        response = self.client.post(vote_url, {'choice': choice.id})
+        # You should not be able to vote.. what response? idk yet
 
     def test_can_vote_after_publish(self):
         """
         Can vote if the time now is between pub date and end date
         """
+        sample_question = create_question_with_choices_and_time(
+            question_text="sample_question",
+            choice_texts=["c1", "c2"],
+            pub_day=0,
+            end_day=1
+        )
+        url = reverse("polls:detail", args=(sample_question.id,))
+        response = self.client.get(url)
+
+        choice = sample_question.choice_set.first()
+        vote_url = reverse("polls:vote", args=(sample_question.id,))
+        response = self.client.post(vote_url, {'choice': choice.id})
+
+        self.assertEqual(Choice.objects.get(id=choice.id).votes, 1)
+        self.assertRedirects(response, reverse("polls:results",
+                                               args=(sample_question.id,)))
