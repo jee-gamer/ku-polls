@@ -34,7 +34,7 @@ class Question(models.Model):
         if self.pub_date < now:
             if self.end_date is None:
                 return True
-            if self.end_date > now:
+            elif self.end_date > now:
                 return True
         return False
 

@@ -112,13 +112,13 @@ class DetailViewTest(TestCase):
     def test_future_question(self):
         """
         The detail view of a question with a pub_date in the future
-        returns a 404 not found.
+        redirect to polls page
         """
         future_question = create_question(question_text="Future Question.",
                                           days=5)
         url = reverse("polls:detail", args=(future_question.id,))
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.url, reverse("polls:index"))
 
     def test_past_question(self):
         """
@@ -192,9 +192,13 @@ class CanVoteTest(TestCase):
         response = self.client.get(url)
 
         choice = sample_question.choice_set.first()
+        old_vote = Choice.objects.get(id=choice.id).votes
+
         vote_url = reverse("polls:vote", args=(sample_question.id,))
         response = self.client.post(vote_url, {'choice': choice.id})
-        # You should not be able to vote.. what response? idk yet
+
+        # Vote number should be the same after voting
+        self.assertEqual(Choice.objects.get(id=choice.id).votes, old_vote)
 
     def test_cannot_vote_before_pub_date(self):
         """
@@ -210,9 +214,13 @@ class CanVoteTest(TestCase):
         response = self.client.get(url)
 
         choice = sample_question.choice_set.first()
+        old_vote = Choice.objects.get(id=choice.id).votes
+
         vote_url = reverse("polls:vote", args=(sample_question.id,))
         response = self.client.post(vote_url, {'choice': choice.id})
-        # You should not be able to vote.. what response? idk yet
+
+        # Vote number should be the same after voting
+        self.assertEqual(Choice.objects.get(id=choice.id).votes, old_vote)
 
     def test_can_vote_after_publish(self):
         """
