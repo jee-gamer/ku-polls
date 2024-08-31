@@ -27,6 +27,10 @@ class Question(models.Model):
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
     def is_published(self):
+        """
+        Returns True if the pub_date of the question is in the past or now.
+        :return: boolean
+        """
         now = timezone.now()
         return self.pub_date <= now
 
