@@ -21,5 +21,6 @@ from django.urls import include, path
 urlpatterns = [
     path('polls/', include("polls.urls")),
     path('admin/', admin.site.urls),
-    path('', lambda request: redirect('polls/', permanent=True))
+    path('', lambda request: redirect('polls/', permanent=True)),
+    path('accounts/', include('django.contrib.auth.urls'))
 ]
