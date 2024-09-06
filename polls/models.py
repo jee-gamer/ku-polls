@@ -72,6 +72,10 @@ class Choice(models.Model):
         """return the votes for this choice."""
         return self.vote_set.count()
 
+    def user_voted(self):
+        """return all the users that have voted on this choice"""
+        return (vote.user for vote in self.vote_set.all())
+
     def __str__(self):
         return self.choice_text
 
@@ -81,4 +85,8 @@ class Vote(models.Model):
 
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.choice} by {self.user}"
+
 

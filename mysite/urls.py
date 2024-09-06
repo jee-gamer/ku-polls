@@ -17,10 +17,12 @@ Including another URLconf
 from django.shortcuts import redirect
 from django.contrib import admin
 from django.urls import include, path
+from mysite import views
 
 urlpatterns = [
     path('polls/', include("polls.urls")),
     path('admin/', admin.site.urls),
     path('', lambda request: redirect('polls/', permanent=True)),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('signup/', views.signup, name='signup')
 ]
