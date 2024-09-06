@@ -98,6 +98,11 @@ def vote(request, question_id):
     # Reference to the current user
     user = request.user
 
+    if not question.can_vote():
+        messages.add_message(request, messages.INFO,
+                             cannot_vote_msg)
+        return HttpResponseRedirect(reverse("polls:index"))
+
     # Get the user's vote
     try:
         # vote = user.vote_set.get(choice__question=question)
@@ -111,12 +116,6 @@ def vote(request, question_id):
         vote = Vote.objects.create(user=user, choice=selected_choice)
         # automatically saved
         messages.success(request, f"Your voted for {selected_choice.choice_text}")
-
-
-    if not question.can_vote():
-        messages.add_message(request, messages.INFO,
-                             cannot_vote_msg)
-        return HttpResponseRedirect(reverse("polls:index"))
 
     # Always return an HttpResponseRedirect after successfully dealing
     # with POST data. This prevents data from being posted twice if a

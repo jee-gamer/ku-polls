@@ -3,6 +3,7 @@ import datetime
 from django.test import TestCase
 from django.utils import timezone
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 from .models import Question, Choice
 
@@ -172,16 +173,40 @@ def create_question_with_choices_and_time(question_text, choice_texts, pub_day, 
                                        pub_date=pub_time,
                                        end_date=end_time)
     for choice_text in choice_texts:
-        Choice.objects.create(question=question, choice_text=choice_text,
-                              votes=0)
+        Choice.objects.create(question=question, choice_text=choice_text)
+
     return question
 
 
+class AuthenticationTest(TestCase):
+
+    username = 'admin'
+    password = 'ok'
+
+    @classmethod
+    def setUp(cls):
+        User.objects.create_user(username=cls.username,
+                                 password=cls.password)
+
+    def test_admin_login(self):
+        login = self.client.login(username=self.username,
+                                  password=self.password)
+        self.assertTrue(login)
+
+
+def login(self):
+    AuthenticationTest.setUp()
+    self.client.login(username=AuthenticationTest.username,
+                      password=AuthenticationTest.password)
+
+
 class CanVoteTest(TestCase):
+
     def test_cannot_vote_after_end_date(self):
         """
         Cannot vote if the end date is in the past
         """
+        login(self)
         sample_question = create_question_with_choices_and_time(
             question_text="sample_question",
             choice_texts=["c1", "c2"],
@@ -204,6 +229,7 @@ class CanVoteTest(TestCase):
         """
         Cannot vote if the pub date is in the future
         """
+        login(self)
         sample_question = create_question_with_choices_and_time(
             question_text="sample_question",
             choice_texts=["c1", "c2"],
@@ -226,6 +252,7 @@ class CanVoteTest(TestCase):
         """
         Can vote if the time now is between pub date and end date
         """
+        login(self)
         sample_question = create_question_with_choices_and_time(
             question_text="sample_question",
             choice_texts=["c1", "c2"],
