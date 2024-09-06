@@ -180,8 +180,8 @@ def create_question_with_choices_and_time(question_text, choice_texts, pub_day, 
 
 class AuthenticationTest(TestCase):
 
-    username = 'admin'
-    password = 'ok'
+    username = 'ordinaryGuy'
+    password = 'extras'
 
     @classmethod
     def setUp(cls):
