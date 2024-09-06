@@ -188,7 +188,7 @@ class AuthenticationTest(TestCase):
         User.objects.create_user(username=cls.username,
                                  password=cls.password)
 
-    def test_admin_login(self):
+    def test_auth_user(self):
         login = self.client.login(username=self.username,
                                   password=self.password)
         self.assertTrue(login)
