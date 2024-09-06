@@ -2,13 +2,6 @@
 
 <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 
-<!--Ask for login-->
-{% if user.is_authenticated %}
-   Welcome back, {{ user.username }}
-{% else %}
-   Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>
-{% endif %}
-
 <!--Messages go here-->
 {% if messages %}
     <ul class="messages">
