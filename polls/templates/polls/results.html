@@ -1,3 +1,6 @@
+{% extends 'polls/base.html' %}
+{% block content %}
+
 <h1>{{ question.question_text }}</h1>
 
 {% if messages %}
@@ -26,3 +29,5 @@
 </table>
 
 <a href="{% url 'polls:index' %}">Back to List of Polls</a>
+
+{% endblock %}
