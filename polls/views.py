@@ -7,8 +7,12 @@ from django.views import generic
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
+import logging
 
 from .models import Choice, Question, Vote
+
+logger = logging.getLogger(__name__)
 
 not_published_msg = "That poll is not published yet."
 cannot_vote_msg = "That poll had ended."
@@ -81,11 +85,24 @@ def vote(request, question_id):
     This function is called when a visitor vote on a poll.
     :return: HttpResponse
     """
-    question = get_object_or_404(Question, pk=question_id)
+
+    try:
+        question = get_object_or_404(Question, pk=question_id)
+    except Http404 as ex:
+        logger.exception(f"Non-existent question {question_id}: ", ex)
+        raise
+
+    # Reference to the current user
+    user = request.user
+
     try:
         selected_choice = question.choice_set.get(pk=request.POST["choice"])
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
+        logger.error(
+            f"{user.username} submits vote without selecting a choice"
+            f"on question {question}")
+
         return render(
             request,
             "polls/detail.html",
@@ -95,8 +112,8 @@ def vote(request, question_id):
             },
         )
 
-    # Reference to the current user
-    user = request.user
+    logger.info(f"{user.username} submits vote on choice: {selected_choice}"
+                f"on question {question}")
 
     if not question.can_vote():
         messages.add_message(request, messages.INFO,
