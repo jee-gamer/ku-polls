@@ -112,8 +112,9 @@ def vote(request, question_id):
             },
         )
 
-    logger.info(f"{user.username} submits vote on choice: {selected_choice}"
-                f"on question {question}")
+    logger.info(f"{user.username} submits vote on choice id:"
+                f" {selected_choice.id} "
+                f"on question id: {question.id}")
 
     if not question.can_vote():
         messages.add_message(request, messages.INFO,
