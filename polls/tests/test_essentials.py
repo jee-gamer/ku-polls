@@ -2,10 +2,10 @@ import datetime
 
 from django.test import TestCase
 from django.utils import timezone
-from django.urls import reverse
+
 from django.contrib.auth.models import User
 
-from .models import Question, Choice
+from polls.models import Question, Choice
 
 
 def create_question_with_choices_and_time(question_text, choice_texts, pub_day, end_day):

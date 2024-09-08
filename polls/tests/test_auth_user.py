@@ -12,6 +12,8 @@ from django.contrib.auth import authenticate # to "login" a user using code
 from polls.models import Question, Choice
 from mysite import settings
 
+from . import *
+
 
 class UserAuthTest(django.test.TestCase):
 
@@ -97,4 +99,28 @@ class UserAuthTest(django.test.TestCase):
         self.assertEqual(response.status_code, 302)  # could be 303
         login_with_next = f"{reverse('login')}?next={vote_url}"
         self.assertRedirects(response, login_with_next )
+
+    def test_no_auth_for_vote_result(self):
+        """
+        user should not need to log in to see vote results
+        """
+        sample_question = create_question_with_choices_and_time(
+            question_text="sample_question",
+            choice_texts=["c1", "c2"],
+            pub_day=-2,
+            end_day=-1
+        )
+        url = reverse("polls:results", args=(sample_question.id,))
+        response = self.client.get(url)
+
+        # Check if the request is OK
+        self.assertEqual(response.status_code, 200)
+
+        # Check if the result contains this question text
+        self.assertContains(response, sample_question.question_text)
+
+        # Check if the result contains this question choices
+        for choice in sample_question.choice_set.all():
+            self.assertContains(response, choice.choice_text)
+
 

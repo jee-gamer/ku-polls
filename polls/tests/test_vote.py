@@ -1,13 +1,8 @@
-import datetime
+from . import *
 
-from django.test import TestCase
-from django.utils import timezone
 from django.urls import reverse
-from django.contrib.auth.models import User
 
-from .models import Question, Choice
 
-from test_essentials import *
 class CanVoteTest(TestCase):
 
     def test_cannot_vote_after_end_date(self):

@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-from .models import Question, Choice
+from polls.models import Question, Choice
 
 
 class QuestionModelTests(TestCase):
