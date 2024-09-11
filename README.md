@@ -18,7 +18,7 @@ To be added.
 
 ## Installation
 
-![Installation file](../../blob/main/Installation.md)
+- [Installation file](../../blob/main/Installation.md)
 
 ## Running the Application
 
