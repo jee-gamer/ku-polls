@@ -9,7 +9,7 @@ on:
     branches: [ "main" ]
 
 env:
-  SECRET_KEY: 'GlobalValue'
+  SECRET_KEY: ${{secrets.SECRET_KEY}}
   DEBUG: True
   ALLOWED_HOST: 'testserver'
   TIME_ZONE: 'Asia/Bangkok'
