@@ -1,4 +1,5 @@
 # ku-polls
+[![Python unittest](https://github.com/jee-gamer/ku-polls/actions/workflows/python-app.yml/badge.svg)](https://github.com/jee-gamer/ku-polls/actions/workflows/python-app.yml)
 
 ## Purpose
 This application is a web application for conducting polls and surveys that can specifiy start and end dates. It is an easy to use app that is able to submit a choice on poll items, and view or modify one's choice any time during a polling period.
@@ -17,11 +18,20 @@ To be added.
 
 ## Installation
 
-To be added. If the procedure is long, put it in the wiki or a separate file.
+- [Installation file](../../blob/main/Installation.md)
 
 ## Running the Application
 
 To be added.
+
+## Demo users
+
+| user | password |
+|-------|--------|
+| admin | ok |
+| demo1 | hackme11 |
+| demo2 | hackme22 |
+| demo3 | hackme33 |
 
 ## Project Documents
 
