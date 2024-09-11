@@ -18,7 +18,7 @@ To be added.
 
 ## Installation
 
-To be added. If the procedure is long, put it in the wiki or a separate file.
+![Installation file](../../blob/main/Installation.md)
 
 ## Running the Application
 
