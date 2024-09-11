@@ -11,6 +11,10 @@ class ChoiceInline(admin.TabularInline):
 
 
 class QuestionAdmin(admin.ModelAdmin):
+    """
+    Question section in the admin page.
+    """
+
     fieldsets = [
         (None, {"fields": ["question_text"]}),
         ("Date information", {"fields": ["pub_date", "end_date"],

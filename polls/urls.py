@@ -1,3 +1,5 @@
+"""Urls for django "polls" app."""
+
 from django.urls import path
 
 from . import views
@@ -9,5 +11,3 @@ urlpatterns = [
     path("<int:pk>/results/", views.ResultView.as_view(), name="results"),
     path("<int:question_id>/vote/", views.vote, name="vote"),
 ]
-
-

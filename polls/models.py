@@ -1,3 +1,8 @@
+"""
+Models for Django
+Contains class for database and functions on the base level.
+"""
+
 import datetime
 
 from django.contrib.auth.models import User
@@ -10,8 +15,9 @@ from django.contrib import admin
 class Question(models.Model):
     """
     The Question model contains all variables and function related
-    to a question
+    to a question.
     """
+
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField("date published", default=timezone.now)
     end_date = models.DateTimeField("end date", default=None,
@@ -24,6 +30,7 @@ class Question(models.Model):
         description="published recently?",
     )
     def was_published_recently(self):
+        """Check if the poll was published within a day or not."""
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
@@ -44,7 +51,7 @@ class Question(models.Model):
 
     def can_vote(self):
         """
-        Return True if question is within voting time
+        Return True if question is within voting time.
         :return: boolean
         """
         now = timezone.now()
@@ -56,6 +63,7 @@ class Question(models.Model):
         return False
 
     def __str__(self):
+        """Return question text."""
         return self.question_text
 
 
@@ -63,20 +71,22 @@ class Choice(models.Model):
     """
     The Choice model contains all variable related to a choice.
     """
+
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 
     @property
     def votes(self):
-        """return the votes for this choice."""
+        """Return the votes for this choice."""
         return self.vote_set.count()
 
     def user_voted(self):
-        """return all the users that have voted on this choice"""
+        """Return all the users that have voted on this choice."""
         return (vote.user for vote in self.vote_set.all())
 
     def __str__(self):
+        """Return choice text."""
         return self.choice_text
 
 
@@ -87,6 +97,5 @@ class Vote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
+        """Return choice and user string."""
         return f"{self.choice} by {self.user}"
-
-
