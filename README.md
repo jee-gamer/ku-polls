@@ -24,6 +24,15 @@ To be added.
 
 To be added.
 
+## Demo users
+
+| user | password |
+|-------|--------|
+| admin | ok |
+| demo1 | hackme11 |
+| demo2 | hackme22 |
+| demo3 | hackme33 |
+
 ## Project Documents
 
 All project documents are in the [Project Wiki](../../wiki/Home).
