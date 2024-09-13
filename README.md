@@ -22,7 +22,10 @@ To be added.
 
 ## Running the Application
 
-To be added.
+1. Go into directory ku-polls `$ cd ku-polls`
+2. Make migrations `$ python manage.py makemigrations`
+3. Migrate `$ python manage.py migrate`
+4. Run the server on your localhost `$ python manage.py runserver`
 
 ## Demo users
 
