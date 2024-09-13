@@ -35,6 +35,17 @@ To be added.
 | demo2 | hackme22 |
 | demo3 | hackme33 |
 
+### How to load Demo users
+run `$ python manage.py loaddata data/users.json`
+
+### How to load sample question, choices and votes
+run `$ python manage.py loaddata data/polls-v4.json data/votes-v4.json`
+
+## How to go into Admin website
+Go to `your_url/admin/` instead of the normal `your_url/polls/` <br>
+If you run on localhost `your_url` will be `http://127.0.0.1:8000/`
+or `localhost:8000`
+
 ## Project Documents
 
 All project documents are in the [Project Wiki](../../wiki/Home).
@@ -42,5 +53,4 @@ All project documents are in the [Project Wiki](../../wiki/Home).
 - [Vision Statement](../../wiki/Vision)
 - [Requirements](../../wiki/Requirements)
 - [Project Plan](../../wiki/Project%20Plan)
-
-- [Iteration 2 Plan](../../wiki/Iteration%202%20Plan)
+- [Domain Model](../../wiki/Domain%20Model)
