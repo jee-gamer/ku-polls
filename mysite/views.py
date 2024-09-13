@@ -1,12 +1,23 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, get_user_model
 from django.contrib.auth.forms import UserCreationForm
+
+
+class CustomRegisterForm(UserCreationForm):
+    """Form to Create new User"""
+
+    # Remove that password authentication section
+    usable_password = None
+
+    class Meta:
+        model = get_user_model()
+        fields = ["username", "password1", "password2"]
 
 
 def signup(request):
     """Register a new user."""
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             # get named fields from the form data
@@ -20,5 +31,5 @@ def signup(request):
         # we should display a message in signup.html
     else:
         # create a user form and display it the signup page
-        form = UserCreationForm()
+        form = CustomRegisterForm()
     return render(request, 'registration/signup.html', {'form': form})
