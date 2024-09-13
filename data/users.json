@@ -4,15 +4,15 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$870000$AoPe1NU29oYcrQz4Hd8TI5$Q9sW89BmQe/XZ51M0wswpdZDnO9GVZojq+I6M/8xDgw=",
-    "last_login": "2024-09-07T02:36:28.321Z",
+    "last_login": "2024-09-07T02:36:28Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
     "last_name": "",
-    "email": "jiramate2548@gmail.com",
+    "email": "",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2024-08-28T08:29:58.575Z",
+    "date_joined": "2024-08-28T08:29:58Z",
     "groups": [],
     "user_permissions": []
   }

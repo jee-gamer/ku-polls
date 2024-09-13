@@ -1,0 +1,214 @@
+[
+{
+  "model": "polls.question",
+  "pk": 3,
+  "fields": {
+    "question_text": "How often do you play video games?",
+    "pub_date": "2024-08-31T12:04:54Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 6,
+  "fields": {
+    "question_text": "Do you like reading?",
+    "pub_date": "2024-09-11T12:36:18Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 7,
+  "fields": {
+    "question_text": "Do you exercise?",
+    "pub_date": "2024-09-11T12:48:22Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 8,
+  "fields": {
+    "question_text": "Do you like programming?",
+    "pub_date": "2024-09-11T12:50:40Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 6,
+  "fields": {
+    "question": 3,
+    "choice_text": "Every. Single. Day."
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 7,
+  "fields": {
+    "question": 3,
+    "choice_text": "Few days a week."
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 8,
+  "fields": {
+    "question": 3,
+    "choice_text": "I play only on weekends."
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 9,
+  "fields": {
+    "question": 3,
+    "choice_text": "I rarely play."
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 11,
+  "fields": {
+    "question": 3,
+    "choice_text": "get a life loser ( I don't play video games )"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 17,
+  "fields": {
+    "question": 6,
+    "choice_text": "Hell yeah I read them manhwa and manga"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 18,
+  "fields": {
+    "question": 6,
+    "choice_text": "I'm a certified bookworm (I read everything)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 19,
+  "fields": {
+    "question": 6,
+    "choice_text": "I only read for academics"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 20,
+  "fields": {
+    "question": 6,
+    "choice_text": "I like reading novels"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 21,
+  "fields": {
+    "question": 6,
+    "choice_text": "I ABSOLUTELY DESPISE ANY KIND OF READING"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 22,
+  "fields": {
+    "question": 6,
+    "choice_text": "I read for entertainment only"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 23,
+  "fields": {
+    "question": 6,
+    "choice_text": "KNOWLEDGE IS THE MEASURE FOR ALL THINGS"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 24,
+  "fields": {
+    "question": 7,
+    "choice_text": "Weakness of flesh digust me (every day)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 25,
+  "fields": {
+    "question": 7,
+    "choice_text": "Few times a week"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 26,
+  "fields": {
+    "question": 7,
+    "choice_text": "Only once a week"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 27,
+  "fields": {
+    "question": 7,
+    "choice_text": "Hell no I HATE exercising"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 28,
+  "fields": {
+    "question": 7,
+    "choice_text": "Two times a week"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 29,
+  "fields": {
+    "question": 8,
+    "choice_text": "PROGRAMMING IS IN MY BLOOD"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 30,
+  "fields": {
+    "question": 8,
+    "choice_text": "I'm only in it for the money"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 31,
+  "fields": {
+    "question": 8,
+    "choice_text": "I hate it I don't like working with computer all day"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 32,
+  "fields": {
+    "question": 8,
+    "choice_text": "I kinda like it and kinda dont at the same time"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 33,
+  "fields": {
+    "question": 8,
+    "choice_text": "I really like programming"
+  }
+}
+]
