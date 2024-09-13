@@ -1,5 +1,6 @@
-
-from django.db.models import F
+"""
+Views for Django
+"""
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
@@ -22,19 +23,21 @@ class IndexView(generic.ListView):
     """
     This view displays a list of 5 poll last created.
     """
+
     template_name = "polls/index.html"
     context_object_name = "latest_question_list"
 
     def get_queryset(self):
-        """Return the last five published questions"""
+        """Return the last five published questions."""
         return Question.objects.filter(pub_date__lte=timezone.now()) \
-            .order_by("-pub_date")[:5]
+            .order_by("-pub_date")
 
 
 class DetailView(generic.DetailView):
     """
     This view displays question and choices.
     """
+
     model = Question
     template_name = "polls/detail.html"
 
@@ -43,6 +46,7 @@ class DetailView(generic.DetailView):
         return Question.objects.all()
 
     def get(self, request, *args, **kwargs):
+        """Manage the get request from the DetailView."""
         self.object = self.get_object()
 
         if not self.object.is_published():
@@ -68,6 +72,7 @@ class ResultView(generic.DetailView):
     template_name = "polls/results.html"
 
     def get(self, request, *args, **kwargs):
+        """Manage the get request from the ResultView."""
         self.object = self.get_object()
 
         if not self.object.is_published():
@@ -82,6 +87,7 @@ class ResultView(generic.DetailView):
 @login_required
 def vote(request, question_id):
     """
+    Compute the vote and return http response.
     This function is called when a visitor vote on a poll.
     :return: HttpResponse
     """
@@ -128,12 +134,14 @@ def vote(request, question_id):
         # user has a vote for this question! Update his choice.
         vote.choice = selected_choice
         vote.save()
-        messages.success(request, f"Your vote was changed to {selected_choice.choice_text}")
+        messages.success(request, f"Your vote was changed to"
+                                  f" {selected_choice.choice_text}")
     except Vote.DoesNotExist:
         # does not have a vote yet
         vote = Vote.objects.create(user=user, choice=selected_choice)
         # automatically saved
-        messages.success(request, f"Your voted for {selected_choice.choice_text}")
+        messages.success(request, f"Your voted for"
+                                  f" {selected_choice.choice_text}")
 
     # Always return an HttpResponseRedirect after successfully dealing
     # with POST data. This prevents data from being posted twice if a

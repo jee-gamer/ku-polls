@@ -1,4 +1,5 @@
-from polls.tests.test_essentials import *
+from . import *
+
 
 class UITest(TestCase):
     pass

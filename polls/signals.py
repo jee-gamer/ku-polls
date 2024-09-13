@@ -1,4 +1,7 @@
-from django.contrib.auth.signals import user_logged_in, user_logged_out, user_login_failed
+"""File for detecting authorization signals and logging them."""
+
+from django.contrib.auth.signals import user_logged_in, user_logged_out,\
+    user_login_failed
 from django.dispatch import receiver
 import logging
 
@@ -17,18 +20,21 @@ def get_client_ip(request):
 
 @receiver(user_logged_in)
 def log_user_login(sender, request, user, **kwargs):
+    """Signal when the user successfully login."""
     ip = get_client_ip(request)
     logger.info(f"User {user.username} logged in. IP: {ip}")
 
 
 @receiver(user_logged_out)
 def log_user_logout(sender, request, user, **kwargs):
+    """Signal when the user log out."""
     ip = get_client_ip(request)
     logger.info(f"User {user.username} logged out. IP: {ip}")
 
 
 @receiver(user_login_failed)
 def log_user_login_failed(sender, credentials, request, **kwargs):
+    """Signal when the user login have failed."""
     ip = get_client_ip(request)
     logger.warning(
         f"Unsuccessful login attempt. Username:"
