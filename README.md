@@ -23,7 +23,7 @@ To be added.
 ## Running the Application
 
 1. Go into directory ku-polls `$ cd ku-polls`
-2. Make sure you already did `makemigrations` and `migrate` steps in Installation.md
+2. Make sure you already did `makemigrations` and `migrate` steps in `Installation.md`
 3. Run the server on your localhost `$ python manage.py runserver`
 
 ## Demo users
