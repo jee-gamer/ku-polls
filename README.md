@@ -37,6 +37,8 @@ To be added.
 
 All project documents are in the [Project Wiki](../../wiki/Home).
 
+- [How to use](../../wiki/How%2oto%2ouse)
+
 - [Vision Statement](../../wiki/Vision)
 - [Requirements](../../wiki/Requirements)
 - [Project Plan](../../wiki/Project%20Plan)
