@@ -9,8 +9,7 @@
 `cd ../..` <br>
 7. Run `$ pip install -r requirements.txt`.
 8. Create your own `.env` file, view examples in `sample.env`.
-9. Make migrations `$ python manage.py makemigrations`.
-10. Migrate `$ python manage.py migrate`.
-11. Run tests `$ python manage.py test`.
+9. Migrate `$ python manage.py migrate`.
+10. Run tests `$ python manage.py test`.
 
 ## How to run is in README.md
