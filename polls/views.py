@@ -83,7 +83,12 @@ class ResultView(generic.DetailView):
 
     def get(self, request, *args, **kwargs):
         """Manage the get request from the ResultView."""
-        self.object = self.get_object()
+        self.object = None
+
+        try:
+            self.object = self.get_object()
+        except Exception:
+            return HttpResponseRedirect(reverse("polls:index"))
 
         if not self.object.is_published():
             messages.add_message(request, messages.INFO,
