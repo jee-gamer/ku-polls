@@ -47,7 +47,14 @@ class DetailView(generic.DetailView):
 
     def get(self, request, *args, **kwargs):
         """Manage the get request from the DetailView."""
-        self.object = self.get_object()
+
+        self.object = None
+
+        try:
+            self.object = self.get_object()
+        except Exception:
+            return HttpResponseRedirect(reverse("polls:index"))
+
 
         if not self.object.is_published():
             messages.add_message(request, messages.INFO,
@@ -58,6 +65,9 @@ class DetailView(generic.DetailView):
         elif not self.object.can_vote():
             messages.add_message(request, messages.INFO,
                                  cannot_vote_msg)
+            return HttpResponseRedirect(reverse("polls:index"))
+
+        elif not self.object:
             return HttpResponseRedirect(reverse("polls:index"))
 
         context = self.get_context_data(object=self.object)
