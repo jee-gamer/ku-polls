@@ -12,7 +12,7 @@ services:
       retries: 5
     restart: always
     env_file:
-      - .env
+      - docker.env
     environment:
       POSTGRES_USER: "${DATABASE_USERNAME?:DATABASE_USERNAME not set}"
       POSTGRES_PASSWORD: "${DATABASE_PASSWORD?:DATABASE_PASSWORD not set}"
@@ -27,7 +27,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: second.Dockerfile
+      dockerfile: Dockerfile
       args:
         SECRET_KEY: "${SECRET_KEY?:SECRET_KEY not set}"
     command:
@@ -37,7 +37,7 @@ services:
         python manage.py migrate
         python manage.py runserver 0.0.0.0:8000
     env_file:
-      - .env
+      - docker.env
     environment:
       SECRET_KEY: "${SECRET_KEY?:SECRET_KEY not set}"
       DATABASE_HOST: db

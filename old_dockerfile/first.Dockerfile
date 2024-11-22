@@ -1,7 +1,7 @@
 FROM python:3-alpine
 
 WORKDIR /app/polls
-COPY ./requirements.txt .
+COPY ../requirements.txt .
 
 # Install dependencies on Docker container
 RUN pip install -r requirements.txt
@@ -14,7 +14,7 @@ ENV DEBUG=True
 ENV ALLOWED_HOSTS='127.0.0.1,localhost'
 ENV TIME_ZONE=Asia/Bangkok
 
-COPY . .
+COPY .. .
 RUN chmod +x ./entrypoint.sh
 
 EXPOSE 8000
